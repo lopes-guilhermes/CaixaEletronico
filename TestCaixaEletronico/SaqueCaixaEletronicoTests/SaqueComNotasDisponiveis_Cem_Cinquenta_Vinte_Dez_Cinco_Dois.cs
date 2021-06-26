@@ -1,4 +1,5 @@
 ﻿using CaixaEletronico.Enums;
+using CaixaEletronico.Exceptions;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Services;
 using NUnit.Framework;
@@ -40,7 +41,7 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
         [Test]
         public void SacarComValorNotasIndisponiveis()
         {
-            Assert.Pass();
+            Assert.Throws<BusinessException>(() => _saqueCaixaEletronico.Sacar(1));
         }
     }
 }

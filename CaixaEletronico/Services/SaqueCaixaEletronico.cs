@@ -1,4 +1,5 @@
-﻿using CaixaEletronico.Models;
+﻿using CaixaEletronico.Exceptions;
+using CaixaEletronico.Models;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Validators;
 using System;
@@ -19,7 +20,7 @@ namespace CaixaEletronico.Services
             var notasDispoiniveis = _notasDisponiveisProvider.GetCedulasDisponiveis();
 
             if (!ValidarNotasDisponiveisParaSaque.Validar(valor, notasDispoiniveis)) 
-                throw new Exception("Não possui notas disponíveis para realizar o saque");
+                throw new BusinessException("Não possui notas disponíveis para realizar o saque");
                         
             /// separar cédulas            
 

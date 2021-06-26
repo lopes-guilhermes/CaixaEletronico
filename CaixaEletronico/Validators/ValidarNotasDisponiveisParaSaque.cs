@@ -1,4 +1,5 @@
 ﻿using CaixaEletronico.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace CaixaEletronico.Validators
@@ -7,7 +8,12 @@ namespace CaixaEletronico.Validators
     {
         public static bool Validar(int valor, List<CedulaEnum> notasDisponiveis)
         {
-            return true;
+            if (valor == 0)
+                return true;
+
+            notasDisponiveis.ForEach(cedula => valor = (valor % (int)cedula));
+
+            return valor == 0;
         }
     }
 }
