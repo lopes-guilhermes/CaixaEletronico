@@ -1,5 +1,6 @@
 ﻿using CaixaEletronico.Enums;
 using CaixaEletronico.Exceptions;
+using CaixaEletronico.Models;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Services;
 using NUnit.Framework;
@@ -35,7 +36,51 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
         [Test]
         public void SacarComSucesso()
         {
-            Assert.Pass();
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(2), new List<Saque> {
+                new Saque(1, CedulaEnum.Dois)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(7), new List<Saque> {  
+                new Saque(1, CedulaEnum.Cinco),
+                new Saque(1, CedulaEnum.Dois)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(15), new List<Saque> {
+                new Saque(1, CedulaEnum.Dez),
+                new Saque(1, CedulaEnum.Cinco)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(77), new List<Saque> {
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(1, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Dois)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(99), new List<Saque> {
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(2, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Cinco),
+                new Saque(2, CedulaEnum.Dois)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(88), new List<Saque> {
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(1, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Dez),
+                new Saque(4, CedulaEnum.Dois)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(150), new List<Saque> {
+                new Saque(1, CedulaEnum.Cem),
+                new Saque(1, CedulaEnum.Cinquenta)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(380), new List<Saque> {
+                new Saque(3, CedulaEnum.Cem),
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(1, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Dez)
+            });
         }
 
         [Test]

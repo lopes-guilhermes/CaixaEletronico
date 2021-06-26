@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace CaixaEletronico.Validators
 {
-    public static class ValidarNotasDisponiveisParaSaque
+    public static class SaqueValidator
     {
-        public static bool Validar(int valor, List<CedulaEnum> notasDisponiveis)
+        public static bool PossuiNotasDisponiveis(int valor, List<CedulaEnum> notasDisponiveis)
         {
             if (valor == 0)
                 return true;

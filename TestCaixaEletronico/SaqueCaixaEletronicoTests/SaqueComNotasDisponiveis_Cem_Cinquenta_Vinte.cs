@@ -1,5 +1,6 @@
 ﻿using CaixaEletronico.Enums;
 using CaixaEletronico.Exceptions;
+using CaixaEletronico.Models;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Services;
 using NUnit.Framework;
@@ -30,7 +31,21 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
         [Test]
         public void SacarComSucesso()
         {
-            Assert.Pass();
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(150), new List<Saque> {
+                new Saque(1, CedulaEnum.Cem),
+                new Saque(1, CedulaEnum.Cinquenta)
+            });
+            
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(120), new List<Saque> {
+                new Saque(1, CedulaEnum.Cem),
+                new Saque(1, CedulaEnum.Vinte)
+            });
+            
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(170), new List<Saque> {
+                new Saque(1, CedulaEnum.Cem),
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(1, CedulaEnum.Vinte)
+            });
         }
 
         [Test]

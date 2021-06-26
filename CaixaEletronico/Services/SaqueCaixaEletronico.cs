@@ -19,10 +19,19 @@ namespace CaixaEletronico.Services
             var saque = new List<Saque> { };
             var notasDispoiniveis = _notasDisponiveisProvider.GetCedulasDisponiveis();
 
-            if (!ValidarNotasDisponiveisParaSaque.Validar(valor, notasDispoiniveis)) 
+            if (!SaqueValidator.PossuiNotasDisponiveis(valor, notasDispoiniveis)) 
                 throw new BusinessException("Não possui notas disponíveis para realizar o saque");
-                        
-            /// separar cédulas            
+    
+            notasDispoiniveis.ForEach(cedula =>
+            {
+                var quantidade = (valor / (int)cedula);
+                
+                if (quantidade > 0)
+                {
+                    saque.Add(new Saque (quantidade, cedula));
+                    valor -= quantidade * (int)cedula;
+                }
+            });
 
             return saque;
         }
