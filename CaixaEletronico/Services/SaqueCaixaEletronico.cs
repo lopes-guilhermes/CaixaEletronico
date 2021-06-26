@@ -1,4 +1,5 @@
-﻿using CaixaEletronico.Exceptions;
+﻿using CaixaEletronico.Enums;
+using CaixaEletronico.Exceptions;
 using CaixaEletronico.Models;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Validators;
@@ -17,21 +18,24 @@ namespace CaixaEletronico.Services
         public List<Saque> Sacar(int valor)
         {
             var saque = new List<Saque> { };
-            var notasDispoiniveis = _notasDisponiveisProvider.GetCedulasDisponiveis();
+            var notasDisponiveis = _notasDisponiveisProvider.GetCedulasDisponiveis();
 
-            if (!SaqueValidator.PossuiNotasDisponiveis(valor, notasDispoiniveis)) 
+            if (!SaqueValidator.PossuiNotasDisponiveis(valor, notasDisponiveis)) 
                 throw new BusinessException("Não possui notas disponíveis para realizar o saque");
-    
-            notasDispoiniveis.ForEach(cedula =>
+
+            foreach (CedulaEnum cedula in notasDisponiveis)
             {
+                if (SaqueValidator.PossuiNotasParaSaque(valor, cedula, notasDisponiveis))
+                    continue;
+
                 var quantidade = (valor / (int)cedula);
-                
+
                 if (quantidade > 0)
                 {
                     saque.Add(new Saque (quantidade, cedula));
                     valor -= quantidade * (int)cedula;
                 }
-            });
+            }
 
             return saque;
         }
