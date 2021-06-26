@@ -53,6 +53,7 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
             Assert.AreEqual(_saqueCaixaEletronico.Sacar(77), new List<Saque> {
                 new Saque(1, CedulaEnum.Cinquenta),
                 new Saque(1, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Cinco),
                 new Saque(1, CedulaEnum.Dois)
             });
 
@@ -61,13 +62,6 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
                 new Saque(2, CedulaEnum.Vinte),
                 new Saque(1, CedulaEnum.Cinco),
                 new Saque(2, CedulaEnum.Dois)
-            });
-
-            Assert.AreEqual(_saqueCaixaEletronico.Sacar(88), new List<Saque> {
-                new Saque(1, CedulaEnum.Cinquenta),
-                new Saque(1, CedulaEnum.Vinte),
-                new Saque(1, CedulaEnum.Dez),
-                new Saque(4, CedulaEnum.Dois)
             });
 
             Assert.AreEqual(_saqueCaixaEletronico.Sacar(150), new List<Saque> {
@@ -80,6 +74,24 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
                 new Saque(1, CedulaEnum.Cinquenta),
                 new Saque(1, CedulaEnum.Vinte),
                 new Saque(1, CedulaEnum.Dez)
+            });
+        }
+
+        [Test]
+        public void SacarComSucesso_86_e_88_Reais()
+        {
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(86), new List<Saque> {
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(1, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Dez),
+                new Saque(3, CedulaEnum.Dois)
+            });
+
+            Assert.AreEqual(_saqueCaixaEletronico.Sacar(88), new List<Saque> {
+                new Saque(1, CedulaEnum.Cinquenta),
+                new Saque(1, CedulaEnum.Vinte),
+                new Saque(1, CedulaEnum.Dez),
+                new Saque(4, CedulaEnum.Dois)
             });
         }
 
