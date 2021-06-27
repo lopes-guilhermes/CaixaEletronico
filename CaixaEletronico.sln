@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaixaEletronico", "CaixaEletronico\CaixaEletronico.csproj", "{B324C6BB-8AD4-4291-AC1B-01B468CB83E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCaixaEletronico", "TestCaixaEletronico\TestCaixaEletronico.csproj", "{62F93C01-6DE6-42B9-9B78-2BC53712A5BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCaixaEletronico", "TestCaixaEletronico\TestCaixaEletronico.csproj", "{62F93C01-6DE6-42B9-9B78-2BC53712A5BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
