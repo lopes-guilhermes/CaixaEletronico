@@ -1,4 +1,5 @@
 ﻿using CaixaEletronico.Enums;
+using CaixaEletronico.Exceptions;
 using CaixaEletronico.Providers.Implementations;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Services;
@@ -24,13 +25,14 @@ namespace CaixaEletronico
             Console.WriteLine("######## Saque Caixa Eletrônico ########");
             do
             {
+                Console.WriteLine();
                 Console.WriteLine("0 -> Encerrar");
                 Console.WriteLine("1 -> Notas Disponíveis: [100, 50, 20]");
                 Console.WriteLine("2 -> Notas Disponíveis: [100, 50, 20, 10, 5]");
                 Console.WriteLine("3 -> Notas Disponíveis: [100, 50, 20, 10, 5, 2]");
                 
                 Console.Write("Selecione uma opção:");
-                while (!int.TryParse(Console.ReadLine(), out opcaoMenu))
+                while (!int.TryParse(Console.ReadLine(), out opcaoMenu) || (opcaoMenu < 0 || opcaoMenu > 3))
                     Console.Write("Selecione uma opção válida:");
 
                 if (opcaoMenu == 0)
@@ -49,9 +51,14 @@ namespace CaixaEletronico
 
                     Console.WriteLine("Saque realizado:");
                     Console.WriteLine(String.Join(", ", saque));
-                    Console.WriteLine();
-
-                } catch (Exception error) {
+                } 
+                catch (BusinessException error)
+                {
+                    Console.WriteLine(error.Message);
+                    Console.WriteLine("Tente Novamente");
+                }
+                catch (Exception error) 
+                {
                     Console.WriteLine(error.Message);
                 }
 
