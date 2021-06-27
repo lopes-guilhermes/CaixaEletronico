@@ -59,7 +59,10 @@ namespace CaixaEletronico
                 }
                 catch (Exception error) 
                 {
+                    opcaoMenu = 0;
                     Console.WriteLine(error.Message);
+                    Console.WriteLine("A Aplicação apresentou um erro inesperado e será encerrada!");
+                    Console.WriteLine();
                 }
 
             } while (opcaoMenu != 0);
