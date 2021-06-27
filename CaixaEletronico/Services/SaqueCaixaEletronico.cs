@@ -20,6 +20,9 @@ namespace CaixaEletronico.Services
             var saque = new List<Saque> { };
             var notasDisponiveis = _notasDisponiveisProvider.GetCedulasDisponiveis();
 
+            //Garantir que as notas estão ordenadas da maior para a menor
+            notasDisponiveis.Sort((CedulaEnum x, CedulaEnum y) => (int)y - (int)x);
+
             if (!SaqueValidator.PossuiNotasDisponiveis(valor, notasDisponiveis)) 
                 throw new BusinessException("Não possui notas disponíveis para realizar o saque");
 

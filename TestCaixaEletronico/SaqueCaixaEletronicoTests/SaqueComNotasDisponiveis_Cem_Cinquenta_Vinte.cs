@@ -19,8 +19,8 @@ namespace TestCaixaEletronico.SaqueCaixaEletronicoTests
         {
             _notasDisponiveisProvider = new MockNotasDisponiveisProvider{ 
                 cedulasDisponiveis = new List<CedulaEnum> { 
-                    CedulaEnum.Cem,
                     CedulaEnum.Cinquenta,
+                    CedulaEnum.Cem,
                     CedulaEnum.Vinte
                 } 
             };
