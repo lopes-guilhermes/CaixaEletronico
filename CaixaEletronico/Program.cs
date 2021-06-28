@@ -1,5 +1,6 @@
 ﻿using CaixaEletronico.Enums;
 using CaixaEletronico.Exceptions;
+using CaixaEletronico.Factories;
 using CaixaEletronico.Providers.Implementations;
 using CaixaEletronico.Providers.Interfaces;
 using CaixaEletronico.Services;
@@ -46,7 +47,9 @@ namespace CaixaEletronico
 
                 try
                 {
-                    var caixaEletronico = new SaqueCaixaEletronico(host.Services.GetRequiredService<INotasDisponiveisProvider>());
+                    var serviceFactory = new ServiceFactory(host.Services);
+                    var caixaEletronico = serviceFactory.GetService<SaqueCaixaEletronico>();
+                    
                     var saque = caixaEletronico.Sacar(valorSaque);
 
                     Console.WriteLine("Saque realizado:");
